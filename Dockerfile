@@ -35,7 +35,7 @@ ARG TARGETARCH
 RUN --mount=type=cache,id=ccache-${TARGETARCH},target=/root/.cache/ccache \
     git clone "${QEMU_URL}" --branch "${QEMU_BRANCH}" --depth 1 qemu && \
     cd qemu && \
-    PATH="/usr/lib/ccache:${PATH}" ./configure --target-list=aarch64-softmmu && \
+    PATH="/usr/lib/ccache:${PATH}" ./configure --target-list=aarch64-softmmu --enable-plugins && \
     PATH="/usr/lib/ccache:${PATH}" ninja -C build qemu-system-aarch64 && \
     ninja -C build install && \
     cd .. && \
